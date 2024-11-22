@@ -4,7 +4,6 @@ public class Program
 {
     public static void Main()
     {
-        // initialize characters
         Character hero = new Character("Hans-Peterine", 100);
         Character villain = new Character("Inge-Borg", 200);
         
