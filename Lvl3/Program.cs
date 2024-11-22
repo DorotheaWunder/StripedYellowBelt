@@ -6,10 +6,10 @@ public class Program
     {
         //Instanciate the Template class and ability container Generic
         Templates templates = new Templates();
-        var abilityContainer = new Templates.AbilityContainer<Templates.IIAbility>();
+        var abilityContainer = new Templates.AbilityContainer<Templates.IAbility>();
 
-        //Instanciate heal and attack abilities
-        templates.InstanciateAbilities(abilityContainer);
+        //Instanciate heal and attack abilities and put them into the container
+        templates.AddAbilities(abilityContainer);
 
         //Display all abilities in the container
         templates.DisplayAbilities(abilityContainer);

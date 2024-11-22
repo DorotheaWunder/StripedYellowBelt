@@ -22,13 +22,13 @@ public class Templates
         }
     }
     
-    public interface IIAbility
+    public interface IAbility
     {
         string Name { get; set; }
         string Effect { get; set; }
     }
     
-    public class AttackAbility : IIAbility
+    public class AttackAbility : IAbility
     {
         public string Name { get; set; }
         public string Effect { get; set; }
@@ -40,7 +40,7 @@ public class Templates
         }
     }
     
-    public class HealAbility : IIAbility
+    public class HealAbility : IAbility
     {
         public string Name { get; set; }
         public string Effect { get; set; }
@@ -52,15 +52,25 @@ public class Templates
         }
     }
 
-    public  void InstanciateAbilities(AbilityContainer<IIAbility> abilityContainer)
+    public List<IAbility> CreateAbilities()
     {
-        IIAbility attack = new AttackAbility("Attack", "Perform a physical attack on the enemy");
-        IIAbility heal = new HealAbility("Heal", "Restore health for one of your party members");
-        
-        abilityContainer.AddAbility(attack);
-        abilityContainer.AddAbility(heal);
+        return new List<IAbility>
+        {
+            new AttackAbility("Attack", "Perform a physical attack on the enemy"),
+            new HealAbility("Heal", "Restore health for one of your party members")
+        };
     }
-    public void DisplayAbilities(AbilityContainer<IIAbility> abilityContainer)
+    
+    public void AddAbilities(AbilityContainer<IAbility> abilityContainer)
+    {
+        var abilities = CreateAbilities();
+        foreach (var ability in abilities)
+        {
+            abilityContainer.AddAbility(ability);
+        }
+    }
+    
+    public void DisplayAbilities(AbilityContainer<IAbility> abilityContainer)
     {
         var abilities = abilityContainer.RetrieveAbility();
 
